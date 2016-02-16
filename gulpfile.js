@@ -44,7 +44,7 @@ gulp.task('clean', function(){
 })
 
 gulp.task('styles', function(){
-	gulp.src(config.styles.main)
+	return gulp.src(config.styles.main)
 		.pipe(stylus({
 			use: nib(),
 			'include css' : true
@@ -55,7 +55,7 @@ gulp.task('styles', function(){
 })
 
 gulp.task('htmls', function(){
-	gulp.src(config.html.main)
+	return gulp.src(config.html.main)
 		.pipe(gulp.dest(config.html.output))
 		.pipe(livereload());
 })
@@ -72,9 +72,9 @@ gulp.task('js', function(){
 
 gulp.task('watch', function(){
 	livereload.listen();
-	gulp.watch(config.html.watch ['htmls']);
-	gulp.watch(config.styles.watch ['styles']);
-	gulp.watch(config.scripts.watch ['js']);
+	gulp.watch(config.html.watch, ['htmls']);
+	gulp.watch(config.styles.watch, ['styles']);
+	gulp.watch(config.scripts.watch, ['js']);
 	})
 
 gulp.task('default', ['clean','server', 'watch'], function(){
